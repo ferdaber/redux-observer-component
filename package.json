@@ -5,10 +5,7 @@
     "main": "lib/index.js",
     "module": "lib/index.esm.js",
     "types": "lib/index.d.ts",
-    "files": [
-        "lib",
-        "src"
-    ],
+    "files": ["lib", "src"],
     "scripts": {
         "test": "test",
         "clean": "rm -rf lib",
@@ -18,9 +15,11 @@
         "build-types": "cp src/index.d.ts lib/index.d.ts",
         "build-all": "npm run clean && mkdir lib && npm run build-cjs && npm run build-esm && npm run build-types"
     },
-    "keywords": [
-        "redux"
-    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ferdaber/redux-observer-component.git"
+    },
+    "keywords": ["redux"],
     "author": "Ferdy Budhidharma",
     "license": "MIT",
     "devDependencies": {

@@ -1,0 +1,31 @@
+{
+    "name": "redux-component",
+    "version": "0.1.0",
+    "description": "A vanilla JS Redux subscriber with a React-like API.",
+    "main": "lib/index.js",
+    "module": "lib/index.esm.js",
+    "types": "lib/index.d.ts",
+    "files": ["lib", "src"],
+    "scripts": {
+        "test": "test",
+        "clean": "rm -rf lib",
+        "build": "babel src/index.js -s true",
+        "build-cjs": "BABEL_ENV=cjs npm run build -- -o lib/index.js",
+        "build-esm": "BABEL_ENV=esm npm run build -- -o lib/index.esm.js",
+        "build-types": "cp src/index.d.ts lib/index.d.ts",
+        "build-all": "npm run clean && mkdir lib && npm run build-cjs && npm run build-esm && npm run build-types"
+    },
+    "keywords": ["redux"],
+    "author": "Ferdy Budhidharma",
+    "license": "MIT",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-stage-2": "^6.24.1"
+    },
+    "dependencies": {
+        "eventemitter3": "^3.1.0",
+        "redux": ">= 3",
+        "shallowequal": "^1.0.2"
+    }
+}

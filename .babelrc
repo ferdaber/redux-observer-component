@@ -1,0 +1,27 @@
+{
+    "env": {
+        "esm": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "modules": false,
+                        "loose": true
+                    }
+                ],
+                "stage-2"
+            ]
+        },
+        "cjs": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "loose": true
+                    }
+                ],
+                "stage-2"
+            ]
+        }
+    }
+}

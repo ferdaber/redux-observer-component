@@ -1,5 +1,5 @@
 {
-    "name": "redux-component",
+    "name": "redux-observer-component",
     "version": "0.1.0",
     "description": "A vanilla JS Redux subscriber with a React-like API.",
     "main": "lib/index.js",

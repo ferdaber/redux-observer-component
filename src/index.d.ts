@@ -8,7 +8,7 @@ interface EventHandlers<P = {}> {
     dispose(): void
 }
 
-export interface ReduxComponentLifeycle<S = {}, P = {}> {
+export interface ObserverComponentLifeycle<S = {}, P = {}> {
     mapStateToProps?(state: S): Partial<P> | null
     mapDispatchToProps?(dispatch: Dispatch): Partial<P> | null
     componentDidInitialize?(): void
@@ -16,8 +16,8 @@ export interface ReduxComponentLifeycle<S = {}, P = {}> {
     componentWillDispose?(): void
 }
 
-export interface ReduxComponent<S = {}, P = {}> extends ReduxComponentLifeycle<S, P> {}
-export class ReduxComponent<S = {}, P = {}> {
+export interface ObserverComponent<S = {}, P = {}> extends ObserverComponentLifeycle<S, P> {}
+export class ObserverComponent<S = {}, P = {}> {
     store: Store<S>
     props: P
 
@@ -26,4 +26,4 @@ export class ReduxComponent<S = {}, P = {}> {
     off<E extends keyof EventHandlers<P>>(event: E, cb?: EventHandlers<P>[E]): this
 }
 
-export default ReduxComponent
+export default ObserverComponent

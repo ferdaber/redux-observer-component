@@ -22,19 +22,19 @@ When using other libraries with lifecycles that don't match or play well with Re
 
 # Why Not?
 
-If you are comfortable with custom rendering logic using React, then this is library is unnecessary. Everything that the `ReduxComponent` class provides can be achieved with a React component. Think of `ReduxComponent` as a connected `React.Component` but its `render` method always returns null.
+If you are comfortable with custom rendering logic using React, then this is library is unnecessary. Everything that the `ObserverComponent` class provides can be achieved with a React component. Think of `ObserverComponent` as a connected `React.Component` but its `render` method always returns null.
 
 # Usage Case
 
-This component is great for singleton-type modules like logging, usage tracking, feature flagging, and just about anything that only requires a few instances in your app. You can instantiate those components when your app first loads and they will connect to the Redux store, and you can dispatch actions that they will react to from anywhere else in your app, the components themselves can also dispatch their own actions that your app can conversely react to. The below example lists the exact same functionality implemented with redux-component vs. react and react-redux.
+This component is great for singleton-type modules like logging, usage tracking, feature flagging, and just about anything that only requires a few instances in your app. You can instantiate those components when your app first loads and they will connect to the Redux store, and you can dispatch actions that they will react to from anywhere else in your app, the components themselves can also dispatch their own actions that your app can conversely react to. The below example lists the exact same functionality implemented with redux-observer-component vs. react and react-redux.
 
 ```js
 // action-logger.js
-import ReduxComponent from 'redux-component'
+import ObserverComponent from 'redux-observer-component'
 
 import logger from 'my-apps-logger-api'
 
-export default class ActionLogger extends ReduxComponent {
+export default class ActionLogger extends ObserverComponent {
     mapStateToProps(state) {
         return {
             lastDispatchedAction = state.dispatchedActions[state.dispatchedActions.length - 1]
@@ -112,14 +112,14 @@ render(<App />, document.getElementById('root'))
 To get started, you can import the component and declare a class that extends from it:
 
 ```js
-import ReduxComponent from 'redux-component'
+import ObserverComponent from 'redux-observer-component'
 
-class MyComponent extends ReduxComponent {}
+class MyComponent extends ObserverComponent {}
 ```
 
 ### Props Management Methods
 
-These optional methods should be defined by you when declaring and implementing the class that extends from `ReduxComponent`, they are called when the component is first initialized and when the Redux store is updated to map the store state to component-specific props.
+These optional methods should be defined by you when declaring and implementing the class that extends from `ObserverComponent`, they are called when the component is first initialized and when the Redux store is updated to map the store state to component-specific props.
 
 #### `mapStateToProps`
 
@@ -139,7 +139,7 @@ This method receives the Redux store `dispatch` method and you can return a part
 
 ### Lifecycle Methods
 
-These optional methods should be defined by you when declaring and implementing the class that extends from `ReduxComponent`, they are called during the lifecycle of the component as it is initialized and disposed.
+These optional methods should be defined by you when declaring and implementing the class that extends from `ObserverComponent`, they are called during the lifecycle of the component as it is initialized and disposed.
 
 #### `componentDidInitialize`
 
@@ -179,7 +179,7 @@ This method can be called to dispose a component instance and disconnect it from
 #### `on`
 
 ```ts
-function on(event: string, cb: EventCallbackFunction): ReduxComponent
+function on(event: string, cb: EventCallbackFunction): ObserverComponent
 ```
 
 This method can be called to hook onto component instance lifecycle events from the outside. They are called right after the corresponding lifecycle methods (`componentDidInitialize`, etc...). This method returns the instance itself so multiple event hook attachments can be chained. It supports the following events:
@@ -226,11 +226,11 @@ export default createStore(appReducer)
 ```js
 /* action-tracker.js */
 
-import ReduxComponent from 'redux-component'
+import ObserverComponent from 'redux-observer-component'
 import Tracker from 'third-party-tracker'
 import { trackActionCommit } from './store'
 
-export default class ActionTracker extends ReduxComponent {
+export default class ActionTracker extends ObserverComponent {
     mapStateToProps(state) {
         // gets the last tracked action from the Redux state so we can submit it to the third-party API
         return {

@@ -5,11 +5,11 @@ const ALLOWED_EVENT_TYPES = ['initialize', 'update', 'dispose']
 
 const checkAllowedEventType = event => {
     if (!ALLOWED_EVENT_TYPES.some(e => event === e)) {
-        console.warn(`[ReduxComponent] Event type "${event}" is not recognized, it will be ignored`)
+        console.warn(`[ObserverComponent] Event type "${event}" is not recognized, it will be ignored`)
     }
 }
 
-export class ReduxComponent {
+export class ObserverComponent {
     constructor(store) {
         this.store = store
 
@@ -71,4 +71,4 @@ export class ReduxComponent {
     componentWillDispose() {}
 }
 
-export default ReduxComponent
+export default ObserverComponent
